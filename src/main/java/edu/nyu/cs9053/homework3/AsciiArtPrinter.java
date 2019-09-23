@@ -6,11 +6,19 @@ package edu.nyu.cs9053.homework3;
 public class AsciiArtPrinter {
 
     /**
-     * @implNote should only print values within {@code asciiArt} and nothing else within this method
+     * @implNote should only print values within {@code asciiArt} and nothing else
+     *           within this method
      * @param asciiArt to print
      */
     public void print(char[][] asciiArt) {
-	// TODO - implement this
+        // TODO - implement this
+
+        for (char[] rows : asciiArt) {
+            for (char col : rows) {
+                System.out.print(col);
+            }
+            System.out.println("");
+        }
     }
 
     protected void clearScreen() {

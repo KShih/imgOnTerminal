@@ -15,13 +15,21 @@ public class AnimatedAsciiArt {
     }
 
     /**
-     * @implNote input must not be null or empty if so {@code throw new IllegalArgumentException();}
+     * @implNote input must not be null or empty if so
+     *           {@code throw new IllegalArgumentException();}
      * @implNote use the {@linkplain #convert(String)}
      * @param files to convert into {@linkplain ImageInfoProvider[]}
      * @return converted {@linkplain ImageInfoProvider[]}
      */
     protected static ImageInfoProvider[] convert(String[] files) {
-	// TODO - implement
+        // TODO - implement
+        if (files == null || files.length == 0)
+            throw new IllegalArgumentException();
+        ImageInfoProvider[] arrImageinfoprovider = new ImageInfoProvider[files.length];
+        for (int i = 0; i < files.length; i++) {
+            arrImageinfoprovider[i] = convert(files[i]);
+        }
+        return arrImageinfoprovider;
     }
 
     protected static ImageInfoProvider convert(String file) {
@@ -52,12 +60,19 @@ public class AnimatedAsciiArt {
     }
 
     /**
-     * Converts the image data from {@linkplain #providers} into {@literal ASCII} art and prints.
+     * Converts the image data from {@linkplain #providers} into {@literal ASCII}
+     * art and prints.
+     *
      * @implNote before each print of art ensure the screen is cleared
      * @implNote after each print invoke {@linkplain #sleep()}
      */
     public void play() {
-	// TODO - implement
+        // TODO - implement
+        for (ImageInfoProvider provider : providers) {
+            printer.clearScreen();
+            printer.print(converter.convert(provider));
+            sleep();
+        }
     }
 
     protected void sleep() {
